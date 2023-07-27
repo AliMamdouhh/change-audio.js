@@ -1,6 +1,4 @@
-<audio id="audio">
-  <source src="https://github.com/AliMamdouhh/-/blob/main/hover.mp3?raw=true" type="audio/mp3">
-</source></audio>
+
 
 
     // استدعاء العناصر اللازمة
