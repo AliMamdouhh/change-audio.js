@@ -1,58 +1,65 @@
-// إنشاء عنصر الصوت وإضافة الخصائص اللازمة
-const audioElement = document.createElement('audio');
-audioElement.setAttribute('id', 'audio');
 
-const sourceElement = document.createElement('source');
-sourceElement.setAttribute('src', 'https://github.com/AliMamdouhh/-/blob/main/hover.mp3?raw=true');
-sourceElement.setAttribute('type', 'audio/mp3');
+document.addEventListener("DOMContentLoaded", function () {
+  // إنشاء العنصر الصوتي
+  const audioElement = document.createElement("audio");
+  audioElement.setAttribute("id", "audio");
 
-audioElement.appendChild(sourceElement);
+  const sourceElement = document.createElement("source");
+  sourceElement.setAttribute(
+    "src",
+    "https://github.com/AliMamdouhh/-/blob/main/hover.mp3?raw=true"
+  );
+  sourceElement.setAttribute("type", "audio/mp3");
 
-// إنشاء زر التحكم في الصوت وإضافة الخصائص اللازمة
-const toggleAudioButton = document.createElement('button');
-toggleAudioButton.setAttribute('id', 'toggleAudio');
-toggleAudioButton.textContent = 'إيقاف الصوت';
+  audioElement.appendChild(sourceElement);
 
-// إضافة العناصر إلى الصفحة
-document.body.appendChild(audioElement);
-document.body.appendChild(toggleAudioButton);
+  // إنشاء الزر
+  const toggleAudioButton = document.createElement("a");
+  toggleAudioButton.setAttribute("id", "toggleAudio");
+  toggleAudioButton.textContent = "تشغيل/إيقاف الصوت";
 
-// استدعاء العناصر اللازمة
-const elements = document.querySelectorAll('a, button, div, span');
+  // إضافة العنصر الصوتي والزر إلى الصفحة
+  document.body.appendChild(audioElement);
+  document.body.appendChild(toggleAudioButton);
 
-// تعريف متغير لحالة تشغيل الأصوات
-let audioEnabled = true;
+  // استدعاء العناصر اللازمة
+  const elements = document.querySelectorAll("a, button, div, span");
 
-// تحديث قيمة متغير audioEnabled إذا تم تخزين قيمة سابقة
-if (localStorage.getItem('audioEnabled') !== null) {
-  audioEnabled = localStorage.getItem('audioEnabled') === 'true';
-}
+  // تعريف متغير لحالة تشغيل الأصوات
+  let audioEnabled = true;
 
-// تحديث مظهر زر التحكم في الأصوات
-updateToggleAudioButton();
-
-// إضافة مستمع للضغط على الروابط والأزرار
-elements.forEach((element) => {
-  element.addEventListener('click', (event) => {
-    if (audioEnabled) {
-      audioElement.currentTime = 0;
-      audioElement.play();
-    }
-  });
-});
-
-// إضافة مستمع للضغط على زر التحكم في الأصوات
-toggleAudioButton.addEventListener('click', (event) => {
-  audioEnabled = !audioEnabled;
-  localStorage.setItem('audioEnabled', audioEnabled);
-  updateToggleAudioButton();
-});
-
-// تحديث مظهر زر التحكم في الأصوات بناءً على قيمة متغير audioEnabled
-function updateToggleAudioButton() {
-  if (audioEnabled) {
-    toggleAudioButton.innerHTML = 'إيقاف الصوت';
-  } else {
-    toggleAudioButton.innerHTML = 'تشغيل الصوت';
+  // تحديث قيمة متغير audioEnabled إذا تم تخزين قيمة سابقة
+  if (localStorage.getItem("audioEnabled") !== null) {
+    audioEnabled = localStorage.getItem("audioEnabled") === "true";
   }
-}
+
+  // تحديث مظهر الزر عند تحميل الصفحة
+  updateToggleAudioButton();
+
+  // إضافة مستمع للضغط على الروابط والأزرار
+  elements.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      if (audioEnabled) {
+        audioElement.currentTime = 0;
+        audioElement.play();
+      }
+    });
+  });
+
+  // إضافة مستمع للضغط على الزر للتحكم في الأصوات
+  toggleAudioButton.addEventListener("click", (event) => {
+    audioEnabled = !audioEnabled;
+    localStorage.setItem("audioEnabled", audioEnabled);
+    updateToggleAudioButton();
+  });
+
+  // تحديث مظهر الزر بناءً على قيمة متغير audioEnabled
+  function updateToggleAudioButton() {
+    if (audioEnabled) {
+      toggleAudioButton.innerHTML = "إيقاف الصوت";
+    } else {
+      toggleAudioButton.innerHTML = "تشغيل الصوت";
+    }
+  }
+});
+
