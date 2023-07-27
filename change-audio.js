@@ -1,10 +1,20 @@
+// إنشاء عنصر الصوت
+const audioElement = document.createElement('audio');
+audioElement.id = 'audio';
 
+// إضافة عنصر source إلى عنصر الصوت
+const sourceElement = document.createElement('source');
+sourceElement.src = 'https://github.com/AliMamdouhh/-/blob/main/hover.mp3?raw=true';
+sourceElement.type = 'audio/mp3';
 
+// إضافة عنصر source إلى عنصر الصوت
+audioElement.appendChild(sourceElement);
 
-    // استدعاء العناصر اللازمة
+// استدعاء العناصر اللازمة
 const elements = document.querySelectorAll('a, button, div, span');
-const audioElement = document.getElementById('audio');
-const toggleAudioButton = document.getElementById('toggleAudio');
+const toggleAudioButton = document.createElement('button');
+toggleAudioButton.id = 'toggleAudio';
+toggleAudioButton.innerHTML = 'إيقاف الصوت';
 
 // تعريف متغير لحالة تشغيل الأصوات
 let audioEnabled = true;
@@ -43,3 +53,5 @@ function updateToggleAudioButton() {
   }
 }
 
+// إضافة زر التحكم في الأصوات إلى الصفحة
+document.body.appendChild(toggleAudioButton);
